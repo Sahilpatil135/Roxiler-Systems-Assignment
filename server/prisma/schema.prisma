@@ -28,6 +28,7 @@ model User {
 model Store {
   id          Int      @id @default(autoincrement())
   name        String   @db.VarChar(60)
+  email       String   @default("noemail@example.com") @db.VarChar(255)
   address     String   @db.VarChar(400)
   createdAt   DateTime @default(now())
   

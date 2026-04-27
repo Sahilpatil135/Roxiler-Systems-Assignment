@@ -1,3 +1,4 @@
+// Admin routes
 const express = require('express');
 const router = express.Router();
 const prisma = require('../db');
@@ -25,10 +26,27 @@ router.get('/dashboard', async (req, res) => {
 router.get('/users', async (req, res) => {
     try {
         const users = await prisma.user.findMany({
-            select: { id: true, name: true, email: true, address: true, role: true, createdAt: true },
+            select: { 
+                id: true, name: true, email: true, address: true, role: true, createdAt: true,
+                store: {
+                    include: { ratings: true }
+                }
+            },
             orderBy: { createdAt: 'desc' }
         });
-        res.json(users);
+
+        const usersWithRatings = users.map(user => {
+            let storeRating = null;
+            if (user.role === 'STORE_OWNER' && user.store) {
+                const sum = user.store.ratings.reduce((acc, curr) => acc + curr.value, 0);
+                storeRating = user.store.ratings.length ? (sum / user.store.ratings.length).toFixed(1) : 'No Rating';
+            }
+            // Remove the raw store object to keep response clean
+            const { store, ...rest } = user;
+            return { ...rest, storeRating };
+        });
+
+        res.json(usersWithRatings);
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Server error' });
