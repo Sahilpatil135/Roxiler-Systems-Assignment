@@ -2,6 +2,20 @@
 
 A full-stack web application for store ratings and reviews. The application features role-based access control, secure authentication, and a modern, responsive user interface built with React, Express, and PostgreSQL.
 
+## 📸 App Screenshots
+
+| Login Page | Sign Up Page |
+| :---: | :---: |
+| <img src="./client/src/assets/LoginPage.png" alt="Login Page" width="400" /> | <img src="./client/src/assets/SignupPage.png" alt="Sign Up Page" width="400" /> |
+
+| Admin Dashboard | Admin Management |
+| :---: | :---: |
+| <img src="./client/src/assets/AdminPage1.png" alt="Admin Page 1" width="400" /> | <img src="./client/src/assets/AdminPage2.png" alt="Admin Page 2" width="400" /> |
+
+| User Dashboard | Store Owner Page |
+| :---: | :---: |
+| <img src="./client/src/assets/UserPage.png" alt="User Page" width="400" /> | <img src="./client/src/assets/StorePage.png" alt="Store Page" width="400" /> |
+
 ## 🚀 Features
 
 - **Role-Based Access Control (RBAC):** Supports three distinct roles with tailored permissions:
